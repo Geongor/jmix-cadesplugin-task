@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://signPage.caption">
+    <layout spacing="true">
+        <vbox spacing="true">
+            <singleSelectList id="certsList"
+                                  height="200px"/>
+            <button id="loadCertsBtn"
+                        caption="Upload Certificates"/>
+            <hbox spacing="true">
+                <fileStorageUpload id="fileField"
+                                       fileStoragePutMode="MANUAL"/>
+                <label id="fileLabel"/>
+            </hbox>
+            <button id="signBtn"
+                    caption="Sign"/>
+            <jsComponent id="signer"
+                             initFunctionName="screen_ui_js_component_signer">
+                <dependencies>
+                    <dependency path="webjar://jquery:jquery.min.js"/>
+                    <dependency path="vaadin://cadesplugin_api.js"/>
+                    <dependency path="vaadin://signer-connector.js"/>
+                </dependencies>
+            </jsComponent>
+        </vbox>
+    </layout>
+</window>
