@@ -1,6 +1,7 @@
 package com.company.cadesplugin.screen.signpage;
 
 import com.company.cadesplugin.screen.util.JsonUtils;
+import elemental.json.JsonArray;
 import io.jmix.ui.component.Button;
 import io.jmix.ui.component.FileStorageUploadField;
 import io.jmix.ui.component.JavaScriptComponent;
@@ -39,8 +40,9 @@ public class SignPage extends Screen {
     @Subscribe
     public void onInit(InitEvent event) {
         signer.addFunction("onCertsLoad", javaScriptCallbackEvent -> {
-            Map<String, String> options = JsonUtils.jsonArraysToMap(javaScriptCallbackEvent.getArguments().getArray(0),
-                    javaScriptCallbackEvent.getArguments().getArray(1));
+            JsonArray certNames = javaScriptCallbackEvent.getArguments().getArray(0);
+            JsonArray certThumbs = javaScriptCallbackEvent.getArguments().getArray(1);
+            Map<String, String> options = JsonUtils.jsonArraysToMap(certNames, certThumbs);
             certsList.setOptionsMap(options);
         });
         signer.addFunction("onSignCreated", javaScriptCallbackEvent -> {
